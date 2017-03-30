@@ -48,3 +48,60 @@ def eat
 end
 end
 end
+
+
+class Pizzeria
+
+  def initialize
+    @open = false
+    @supplies = 0
+
+  end
+
+  # def order
+  #   unless open == true
+  #     puts "Sorry, no orders while we are closed"
+  #     return
+  #   end
+  #
+  #   if @pizzas_remaining > 0
+  #     @pizzas_remaining -= 1
+  #   else
+  #     puts "sorry no more pizza"
+  #     return
+  #   end
+  #
+  # end
+
+  def order(toppings)
+    if @open == true && @supplies > 0
+      #make the pizza
+      @supplies -= 1
+      p = Pizza.new(toppings)
+      p.bake
+      3.times { p.cut }
+      return p
+    else
+      puts Error: "Can't make pizza"
+    end
+  end
+
+  def open
+    @open = true
+  end
+
+  def close
+    @open = false
+  end
+
+  def restock
+    unless @open == false
+      puts "cannot restock while open"
+      return
+    end
+
+    @supplies = 5
+    puts "Ready to make pizza again!"
+  end
+
+end
